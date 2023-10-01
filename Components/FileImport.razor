@@ -1,0 +1,22 @@
+﻿
+<div class="importer">
+    <InputFile OnChange="@LoadFiles">
+        Datei Auswählen
+    </InputFile>
+</div>
+
+
+
+@code {
+    async void LoadFiles(InputFileChangeEventArgs e)
+    {
+        var file = e.File;
+
+        var stream = file.OpenReadStream();
+
+        using (StreamReader reader = new StreamReader(stream))
+        {
+            var content = await reader.ReadToEndAsync();
+        }
+    }
+}

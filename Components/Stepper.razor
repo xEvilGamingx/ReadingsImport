@@ -1,0 +1,110 @@
+﻿
+<div class="stepper">
+    @foreach (var step in Steps)
+    {
+        <div class="step">
+            <button
+                style="@SetBackground(step)"
+                @onclick="() => SelectComponent(step)"
+             >
+                
+            </button>
+            <p>@step.Name</p>
+        </div>
+    }
+</div>
+
+@SelectedComponent
+
+@code {
+    [Parameter]
+    public List<Step> Steps { get; set; }
+
+    public RenderFragment SelectedComponent { get; set; }
+
+    string SetBackground(Step step)
+    {
+        if (step.Selected)
+        {
+            return "background-color: #0098a1";
+        }
+        else
+        {
+            return "background-color: grey";
+        }
+    }
+
+    void SelectPreviousComponent(Step step)
+    {
+        int index = Steps.IndexOf(step);
+        for (int i = index; i < Steps.Count; i--)
+        {
+            if (Steps[i].Previous is null)
+            {
+                break;
+            }
+            Steps[i].Previous.Selected = true;
+        }
+    }
+
+    void DeSelectNextComponent(Step step)
+    {
+        int index = Steps.IndexOf(step);
+        for (int i = index; i < Steps.Count; i++)
+        {
+            if (Steps[i].Next is null)
+            {
+                break;
+            }
+            Steps[i].Next.Selected = false;
+        }
+    }
+
+    void SelectComponent(Step step)
+    {
+        DeSelectNextComponent(step);
+        SelectPreviousComponent(step);
+
+        SelectedComponent = step.Component;
+        step.Selected = true;
+    }
+
+    void SetPrevious(int index)
+    {
+        try
+        {
+            Steps[index].Previous = Steps[index - 1];
+        }
+        catch (Exception)
+        {
+        }
+    }
+
+    void SetNext(int index)
+    {
+        try
+        {
+            Steps[index].Next = Steps[index + 1];
+        }
+        catch (Exception)
+        {
+        }
+    }
+
+    protected override void OnInitialized()
+    {
+
+        for (int i = 0; i < Steps.Count; i++)
+        {
+
+            SetPrevious(i);
+            SetNext(i);
+
+            if (Steps[i].Selected)
+            {
+                SelectedComponent = Steps[i].Component;
+            }
+        }
+        base.OnInitialized();
+    }
+}

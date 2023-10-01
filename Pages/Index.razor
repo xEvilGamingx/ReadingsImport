@@ -1,0 +1,30 @@
+﻿@page "/"
+
+<PageTitle>Index</PageTitle>
+
+<Stepper Steps="Steps">
+</Stepper>
+
+@code {
+    public List<Step> Steps = new List<Step>()
+    {
+        new Step()
+        {
+            Name = "Import", 
+            Component = @<FileImport/>, 
+            Selected = true
+        },
+        new Step()
+        {
+            Name = "Anpassungen", 
+            Component = @<Counter />
+        },
+        new Step()
+        {
+            Name = "Speichern",
+            Component = @<FetchData/>
+        }
+    };
+
+    
+}
