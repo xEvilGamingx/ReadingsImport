@@ -1,22 +1,33 @@
 ﻿
-<div class="importer">
-    <InputFile OnChange="@LoadFiles">
-        Datei Auswählen
-    </InputFile>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-4">
+            <InputFile class="form-control" OnChange="@LoadFiles">
+                Datei Auswählen
+            </InputFile>
+        </div>
+    </div>
 </div>
-
-
 
 @code {
     async void LoadFiles(InputFileChangeEventArgs e)
     {
+
         var file = e.File;
 
         var stream = file.OpenReadStream();
 
         using (StreamReader reader = new StreamReader(stream))
         {
-            var content = await reader.ReadToEndAsync();
+            File.Content = await reader.ReadToEndAsync();
+
         }
+    }
+
+    protected override Task OnInitializedAsync()
+    {
+        //Leeren des Dokumentes
+        File.Content = string.Empty;
+        return base.OnInitializedAsync();
     }
 }
