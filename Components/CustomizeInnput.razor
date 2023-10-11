@@ -1,0 +1,11 @@
+﻿<h3>CustomizeInnput</h3>
+
+@for (int i = 0; i < fileModel.Rows.Count; i++)
+{
+    for (int j = 0; j < fileModel.Rows[i].Values.Count; j++)
+    {
+        <InputText @bind-Value="fileModel.Rows[i].Values[j].Content"></InputText>
+    }
+}
+
+

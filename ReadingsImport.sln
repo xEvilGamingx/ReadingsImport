@@ -3,7 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReadingsImport", "ReadingsImport.csproj", "{3010B0A4-A5AD-4759-AC90-E939BE826497}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReadingsImport", "ReadingsImport.csproj", "{3010B0A4-A5AD-4759-AC90-E939BE826497}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Projektmappenelemente", "Projektmappenelemente", "{2493F528-CEA2-4F1C-B860-884149EC4E6A}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

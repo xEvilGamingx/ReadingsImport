@@ -102,6 +102,8 @@
 
             if (Steps[i].Selected)
             {
+                DeSelectNextComponent(Steps[i]);
+                SelectPreviousComponent(Steps[i]);
                 SelectedComponent = Steps[i].Component;
             }
         }

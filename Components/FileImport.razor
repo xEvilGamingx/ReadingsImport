@@ -9,25 +9,4 @@
     </div>
 </div>
 
-@code {
-    async void LoadFiles(InputFileChangeEventArgs e)
-    {
 
-        var file = e.File;
-
-        var stream = file.OpenReadStream();
-
-        using (StreamReader reader = new StreamReader(stream))
-        {
-            File.Content = await reader.ReadToEndAsync();
-
-        }
-    }
-
-    protected override Task OnInitializedAsync()
-    {
-        //Leeren des Dokumentes
-        File.Content = string.Empty;
-        return base.OnInitializedAsync();
-    }
-}
